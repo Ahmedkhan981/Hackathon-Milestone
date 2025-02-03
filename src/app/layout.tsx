@@ -1,4 +1,3 @@
-"use client"; // Ensures Clerk only runs on the client side
 
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
