@@ -26,12 +26,13 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
-      >
-       
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+    >
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
+        >
           <Suspense
             fallback={
               <div className="flex items-center justify-center h-screen">
@@ -48,9 +49,9 @@ export default async function RootLayout({
               <SanityLive />
             </QueryProvider>
           </Suspense>
-      </body>
-    </html>
-        </ClerkProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
 
