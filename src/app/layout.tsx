@@ -1,4 +1,3 @@
-// app/layout.tsx
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./Style/globals.css";
@@ -7,7 +6,6 @@ import { Suspense } from "react";
 import Header from "./components/layout/Header";
 import { SanityLive } from "../sanity/lib/live";
 import { Loader2 } from "lucide-react";
-
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const roboto = Roboto({
@@ -20,15 +18,22 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default async function RootLayout({
+// Ensure environment variable is loaded
+const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
+
+if (!clerkPublishableKey) {
+  console.error(
+    "Missing Clerk Publishable Key. Set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY in .env.local.",
+  );
+}
+
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider
-      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
-    >
+    <ClerkProvider publishableKey={clerkPublishableKey}>
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
@@ -43,7 +48,6 @@ export default async function RootLayout({
             <QueryProvider>
               <main>
                 <Header />
-                {/* Render children or NotFound */}
                 {children}
               </main>
               <SanityLive />
@@ -54,36 +58,3 @@ export default async function RootLayout({
     </ClerkProvider>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

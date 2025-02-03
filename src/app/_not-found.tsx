@@ -6,7 +6,7 @@ export default function NotFound() {
       <div className="text-center space-y-6 animate-fade-in">
         <h1 className="text-6xl font-bold text-gray-800">404</h1>
         <p className="text-xl text-gray-600">
-          Oops! The page you’re looking for doesn’t exist.
+          Oops! The page you are looking for does not exist.
         </p>
         <div className="relative inline-block">
           <div className="absolute inset-0 w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-purple-600 opacity-50 blur-xl"></div>
