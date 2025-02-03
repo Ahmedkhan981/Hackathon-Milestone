@@ -3,12 +3,10 @@
 import { useState} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingCart, Search, Menu, X } from "lucide-react";
-import { FaShoppingBasket } from "react-icons/fa";
 import Link from "next/link";
 import From from "next/form";
 import {
   ClerkLoaded,
-  SignedIn,
   SignInButton,
   UserButton,
   useUser,
@@ -125,16 +123,7 @@ const Header = () => {
             </button>
           </Link>
           <ClerkLoaded>
-            <SignedIn>
-              <Link href={"/order"}>
-                <button
-                  aria-label="Order"
-                  className="text-gray-600 hover:text-blue-600 transition-colors"
-                >
-                  <FaShoppingBasket size={24} />
-                </button>
-              </Link>
-            </SignedIn>
+
 
             {user ? (
               <div className="flex items-center space-x-2 font-bold">
