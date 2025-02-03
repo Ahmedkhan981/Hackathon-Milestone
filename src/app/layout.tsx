@@ -1,3 +1,5 @@
+"use client"; // Ensures Clerk only runs on the client side
+
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./Style/globals.css";
@@ -18,31 +20,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Ensure environment variable is loaded
-const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
-
-if (!clerkPublishableKey) {
-  console.error(
-    "Missing Clerk Publishable Key. Set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY in .env.local.",
-  );
-}
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
   return (
-    <ClerkProvider publishableKey={clerkPublishableKey}>
+    <ClerkProvider
+      publishableKey={
+        clerkKey || "pk_test_YmVsb3ZlZC1oeWVuYS03OC5jbGVyay5hY2NvdW50cy5kZXYk"
+      }
+    >
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} antialiased`}
         >
           <Suspense
             fallback={
-              <div className="flex items-center justify-center h-screen">
-                <Loader2 className="w-10 h-10 animate-spin text-primary" />
-              </div>
+              <Loader2 className="w-10 h-10 animate-spin text-primary" />
             }
           >
             <QueryProvider>
