@@ -1,4 +1,3 @@
-
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./Style/globals.css";
